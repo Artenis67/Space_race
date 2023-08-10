@@ -1,7 +1,5 @@
 import pygame
 import spaceship_files.spaceship_prog as spaceship_prog
-import spaceship_files.spaceship_skills as spaceship_skills
-import asteroid_files.asteroid_prog as asteroid_prog
 import asteroid_files.asteroid_skills as asteroid_skills
 
 pygame.init() 
@@ -33,6 +31,19 @@ player_image = pygame.transform.scale(player_image, (250, 250))
 background_image = pygame.image.load("assets/background/space_background.jpg")
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
+##################### Asteroid Prog #####################
+
+asteroid_skin = pygame.image.load("assets/asteroid/asteroid_skin.png")
+time_for_spawn_asteroid = 300
+asteroid_pos = (player_pos.y + 10, player_pos.x)
+
+def create_asteroid():
+    brown_color = (139, 69, 19)  # Marron
+    circle_radius = 10
+    circle_pos = (int(player_pos.x), int(player_pos.y) - circle_radius - 10)
+    pygame.draw.circle(screen, brown_color, circle_pos, circle_radius)  
+###########################################################
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -59,6 +70,9 @@ while running:
     if keys[pygame.K_SPACE] and current_time - spaceship_prog.last_shoot_time >= spaceship_prog.shoot_delay:
         spaceship_prog.add_bullet(bullets, player_pos, player_image)
         spaceship_prog.last_shoot_time = current_time
+    if keys[pygame.K_a]:
+        create_asteroid()
+        
         
     spaceship_prog.update_bullets(bullets)
     spaceship_prog.draw_bullets(screen, bullets)

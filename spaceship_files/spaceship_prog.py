@@ -1,11 +1,16 @@
 import pygame
-import time
-import spaceship_files.spaceship_skills as spaceship_skills
-import main
+
+#SpaceShip Skills
+
+spaceship_fire_rate = 500 # Délai en milisecondes (1s = 1000)
+spaceship_speed_shoot = 10
+spaceship_health = 100
+spaceship_lifes = 3
+
 
 # vars
 last_shoot_time = 0
-shoot_delay = spaceship_skills.spaceship_fire_rate
+shoot_delay = spaceship_fire_rate
 
 def add_bullet(bullets, player_pos, player_image):
     bullet_width = 10
@@ -21,7 +26,7 @@ def add_bullet(bullets, player_pos, player_image):
 
 def update_bullets(bullets):
     for bullet in bullets:
-        bullet.y -= spaceship_skills.spaceship_speed_shoot  # Fais avancer les tirs vers le haut
+        bullet.y -= spaceship_speed_shoot  # Fais avancer les tirs vers le haut
 
 def draw_bullets(screen, bullets):
     bullet_color = (255, 0, 0)  # Rouge
