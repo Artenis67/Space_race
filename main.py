@@ -48,13 +48,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-                
-    current_time = pygame.time.get_ticks()
 
     # Afficher l'image du fond d'écran
     screen.blit(background_image, (0, 0))
-    # Mettre à jour l'affichage
-    pygame.display.update()
+         
+    current_time = pygame.time.get_ticks()
+
+
 
 
 
@@ -72,6 +72,8 @@ while running:
         spaceship_prog.last_shoot_time = current_time
     if keys[pygame.K_a]:
         create_asteroid()
+    if keys[pygame.K_ESCAPE]:
+        running = False
         
         
     spaceship_prog.update_bullets(bullets)
